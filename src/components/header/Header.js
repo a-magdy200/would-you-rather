@@ -71,7 +71,7 @@ const Header = () => {
     }
     return (
       <div className={classes.root}>
-        <AppBar position="fixed" variant={'elevation'}>
+        <AppBar position="static" variant={'elevation'}>
           <Toolbar>
             <Link to={'/'} edge="start" className={classes.homeButton}>
               <IconButton onClick={()=>{}}>

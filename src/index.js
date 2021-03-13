@@ -3,12 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {Provider} from "react-redux";
+import store from "./redux/store";
+import {ThemeProvider} from "@material-ui/styles";
+import theme from "./config/theme";
+import {SnackbarProvider} from "notistack";
 ReactDOM.render(
   // Remove Strict mode to use notifications
   // <React.StrictMode>
   //   <App />
   // </React.StrictMode>
-    <App />,
+
+  <Provider store={store}>
+    <ThemeProvider theme={theme}>
+      <SnackbarProvider maxSnack={3}>
+        <App />
+      </SnackbarProvider>
+    </ThemeProvider>
+  </Provider>,
   document.getElementById('root')
 );
 
