@@ -17,7 +17,7 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory, Link} from 'react-router-dom';
 import {logout} from "../../redux/actions";
-import {Box} from "@material-ui/core";
+import {Avatar, Box, Button} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,8 +36,8 @@ const Header = () => {
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
-    const {isLoggedIn} = useSelector(state => state.user);
-
+    const {isLoggedIn, profile} = useSelector(state => state.user);
+    const {profilePicture, firstname} = profile;
     const handleMenu = (event) => {
       setAnchorEl(event.currentTarget);
     };
@@ -81,7 +81,10 @@ const Header = () => {
             <Typography align={'center'} component={'h1'} variant="h3" className={classes.title}>
               Would you rather?
             </Typography>
-              <div>
+              <Box>
+                <Button onClick={() => handleClose('/profile')}>
+                  <Avatar alt={`${firstname}'s Profile Picture`} src={profilePicture} />
+                </Button>
                 <IconButton
                   aria-label="account of current user"
                   aria-controls="menu-appbar"
@@ -108,7 +111,7 @@ const Header = () => {
                 >
                   {renderMenuItems()}
                 </Menu>
-              </div>
+              </Box>
           </Toolbar>
         </AppBar>
       </div>
