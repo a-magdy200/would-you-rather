@@ -8,6 +8,7 @@ node_modules/
 .env
 # IDE
 .idea/
+.vscode/
 
 # testing
 /coverage
