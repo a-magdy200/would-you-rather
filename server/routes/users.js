@@ -76,7 +76,7 @@ router.post('/upload-image', async function(req, res) {
     const fileName = _id + '_' + new Date().getTime() + '.' + getFileExtension(image.name);
     // const fileType = req.query['jpg/jpeg'];
     const s3Params = {
-      Bucket: process.env.AWS_BUCKET,
+      Bucket: process.env.AWS_BUCKET || '',
       Key: fileName,
       // Expires: 60,
       ContentType: image.mimetype,
@@ -85,12 +85,12 @@ router.post('/upload-image', async function(req, res) {
     };
     const oldUrl = user.profilePicture.split('/');
     const s3DeleteParams = {
-      Bucket: process.env.AWS_BUCKET,
+      Bucket: process.env.AWS_BUCKET || '',
       Key: oldUrl[oldUrl.length - 1],
     }
     s3client.deleteObject(s3DeleteParams, ((err, data) => {
       s3client.putObject(s3Params, async (err, data) => {
-        const url = `https://${process.env.AWS_BUCKET}.s3.${process.env.AWS_DEFAULT_REGION}.amazonaws.com/${fileName}`;
+        const url = `https://${process.env.AWS_BUCKET || ''}.s3.${process.env.AWS_DEFAULT_REGION || ''}.amazonaws.com/${fileName}`;
         user.profilePicture = url;
         await user.save();
         res.send(url);
