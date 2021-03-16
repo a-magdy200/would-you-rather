@@ -6,15 +6,17 @@ const schema = Schema({
   password: String,
   profilePicture: {
     type: String,
-    default: 'http://picsum.photos/200'
+    default: 'https://would-you-rather.s3.eu-west-3.amazonaws.com/default-user-image-png-8-Transparent-Images-1.png'
   },
   createdPolls: [{
     type: Schema.Types.ObjectId,
-    ref: 'Poll'
+    ref: 'Poll',
+    default: []
   }],
   answeredPolls: [{
     type: Schema.Types.ObjectId,
-    ref: 'Poll'
+    ref: 'Poll',
+    default: []
   }],
   score: {
     type: Number,

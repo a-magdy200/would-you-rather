@@ -4,10 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
-import store from "./redux/store";
 import {ThemeProvider} from "@material-ui/styles";
 import theme from "./config/theme";
 import {SnackbarProvider} from "notistack";
+import {store, persistor} from "./redux/store";
+import { PersistGate } from 'redux-persist/integration/react'
+import Loader from "./components/common/Loader";
 ReactDOM.render(
   // Remove Strict mode to use notifications
   // <React.StrictMode>
@@ -15,11 +17,13 @@ ReactDOM.render(
   // </React.StrictMode>
 
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <SnackbarProvider maxSnack={3}>
-        <App />
-      </SnackbarProvider>
-    </ThemeProvider>
+    <PersistGate persistor={persistor} loading={<Loader/>}>
+      <ThemeProvider theme={theme}>
+        <SnackbarProvider maxSnack={3} autoHideDuration={3000} disableWindowBlurListener={true}>
+          <App />
+        </SnackbarProvider>
+      </ThemeProvider>
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );

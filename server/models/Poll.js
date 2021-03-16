@@ -11,6 +11,18 @@ const schema = Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }],
+  option1Count: {
+    type: Number,
+    default: 0,
+  },
+  option2Count: {
+    type: Number,
+    default: 0,
+  },
+  totalAnswersCount: {
+    type: Number,
+    default: 0,
+  },
 }, {timestamps: true});
 const Poll = model('Poll', schema);
 module.exports = Poll;

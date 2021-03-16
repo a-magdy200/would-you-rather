@@ -1,11 +1,25 @@
-import React from "react";
-import {Box, Button, Card, CardContent, Grid, TextField, Typography} from "@material-ui/core";
+import React, {useEffect, useState} from "react";
+import {
+  Backdrop,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CircularProgress,
+  Grid,
+  TextField,
+  Typography
+} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {clearPollInputs, createPollRequest, updatePollInput} from "../../redux/actions";
 import {withSnackbar} from "notistack";
+import {Redirect} from "react-router-dom";
+import Loader from "../../components/common/Loader";
 const CreatePollPage = ({enqueueSnackbar}) => {
   const dispatch = useDispatch();
-  const {title, option1, option2} = useSelector(state => state.polls.newPollData);
+  const {title, option1, option2} = useSelector(state => state.polls);
+  const {isLoading} = useSelector(state => state.loading);
+  const [creatingState, setCreatingState] = useState('');
   const resetInputs = () => {dispatch(clearPollInputs())}
   const onInputUpdate = (key, value) => {
     dispatch(updatePollInput(key, value));
@@ -13,6 +27,22 @@ const CreatePollPage = ({enqueueSnackbar}) => {
   const onSubmit = () => {
     enqueueSnackbar('Creating your poll...', {variant: 'info'});
     dispatch(createPollRequest());
+  }
+  useEffect(() => {
+    if (isLoading) {
+      setCreatingState('creating');
+    } else {
+      if (creatingState === 'creating') {
+        setCreatingState('created');
+      }
+    }
+  }, [isLoading]);
+  if (isLoading) {
+    return <Loader />
+  }
+  if (creatingState === 'created') {
+    enqueueSnackbar('Your poll has been created successfully!', {variant: 'success'});
+    return <Redirect to={'/'} />;
   }
   return (
     <Box p={3}>
@@ -22,6 +52,7 @@ const CreatePollPage = ({enqueueSnackbar}) => {
             <CardContent>
               <form>
                 <Grid container justify={'center'} alignItems={'center'} direction={'column'}>
+                  <Backdrop style={{zIndex: 9}} open={isLoading}><CircularProgress/></Backdrop>
                   <Typography
                     variant={'h3'}
                     gutterBottom={true}
