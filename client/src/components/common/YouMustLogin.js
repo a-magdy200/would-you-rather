@@ -1,5 +1,6 @@
 import {Button, Typography} from "@material-ui/core";
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
 const YouMustLogin = ({to}) => {
   return (
@@ -10,5 +11,8 @@ const YouMustLogin = ({to}) => {
       </Link>
     </Box>
   )
+}
+YouMustLogin.prototype = {
+  to: PropTypes.string.isRequired
 }
 export default YouMustLogin;

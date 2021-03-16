@@ -1,8 +1,8 @@
 import {Button, Grid} from "@material-ui/core";
 import React from "react";
 import {makeStyles} from "@material-ui/styles";
+import PropTypes from 'prop-types';
 const styles = makeStyles({
-
   buttonContainer: {
     marginBottom: 6,
   },
@@ -28,5 +28,9 @@ const PollButtons = ({options, onOptionClick}) => {
         </Grid>
     </Grid>
   )
+}
+PollButtons.prototype = {
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onOptionClick: PropTypes.func.isRequired
 }
 export default PollButtons;

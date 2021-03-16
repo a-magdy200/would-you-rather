@@ -3,6 +3,7 @@ import React from "react";
 import {makeStyles} from "@material-ui/styles";
 import moment from "moment";
 import {MAIN_COLOR} from "../../config/theme";
+import PropTypes from 'prop-types';
 const styles = makeStyles({
   userCardContainerStyle: {
     // marginRight: 20
@@ -70,5 +71,15 @@ const UserCard = ({user, isProfile = false, createdAt}) => {
       </Card>
     </Grid>
   )
+}
+UserCard.prototype = {
+  isProfile: PropTypes.bool,
+  createdAt: PropTypes.string.isRequired,
+  user:{
+    firstname: PropTypes.string,
+    lastname: PropTypes.string,
+    profilePicture: PropTypes.string,
+    score: PropTypes.number
+  }
 }
 export default UserCard;

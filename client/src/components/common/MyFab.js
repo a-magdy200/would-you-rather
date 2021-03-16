@@ -3,6 +3,7 @@ import {PlusOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import React from "react";
 import {makeStyles} from "@material-ui/styles";
+import PropTypes from 'prop-types';
 const styles = makeStyles({
   floatingActionButtonStyle: {
     position:'fixed',
@@ -20,5 +21,8 @@ const classes = styles();
       </Fab>
     </Link>
   )
+}
+MyFab.prototype = {
+  to: PropTypes.string.isRequired
 }
 export default MyFab

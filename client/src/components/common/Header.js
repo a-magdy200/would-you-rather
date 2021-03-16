@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -11,7 +10,7 @@ import {
   HomeFilled,
   LoginOutlined,
   LogoutOutlined, PlusOutlined,
-  SettingFilled, TableOutlined,
+  TableOutlined,
   UserAddOutlined,
   UserOutlined
 } from "@ant-design/icons";
@@ -19,7 +18,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {useHistory, Link} from 'react-router-dom';
 import {logout} from "../../redux/actions";
 import {Avatar, Box, Button, Grid} from "@material-ui/core";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,

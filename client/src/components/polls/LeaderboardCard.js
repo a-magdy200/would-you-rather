@@ -2,6 +2,7 @@ import React from "react";
 import {Avatar, Card, CardContent, Chip, Grid, Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 import {MAIN_COLOR} from "../../config/theme";
+import PropTypes from 'prop-types';
 const styles = makeStyles({
   cardHeader: {
     borderBottom: `2px solid ${MAIN_COLOR}`,
@@ -54,5 +55,15 @@ const LeaderboardCard = ({user}) => {
       </Card>
     </Grid>
   )
+}
+LeaderboardCard.prototype = {
+  user: {
+    profilePicture: PropTypes.string,
+    firstname: PropTypes.string,
+    lastname: PropTypes.string,
+    score: PropTypes.number,
+    createdPolls: PropTypes.arrayOf(PropTypes.string),
+    answeredPolls: PropTypes.arrayOf(PropTypes.string)
+  }
 }
 export default LeaderboardCard;

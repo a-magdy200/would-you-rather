@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "cd ./client && yarn install && yarn build && cd .. && move ./client/build ./server && cd ./server && rmdir /s/q public && rename build public && cd .. && yarn start",
+    "build": "cd ./client && yarn install && yarn build && cd .. && mv ./client/build ./server && cd ./server && rm -rf public && ren build public && cd .. && yarn start",
     "start": "node ./server/bin/www",
     "watch": "nodemon ./server/bin/www",
     "serve": "cd client && yarn start"

@@ -3,6 +3,7 @@ import {Avatar, Button, Card, CardContent, CardHeader, Grid, Typography} from "@
 import {Link} from "react-router-dom";
 import {makeStyles} from "@material-ui/styles";
 import {MAIN_COLOR} from "../../config/theme";
+import PropTypes from 'prop-types';
 const styles = makeStyles({
   cardHeader: {
     borderBottom: `2px solid ${MAIN_COLOR}`,
@@ -51,5 +52,14 @@ const PollCard = ({poll}) => {
       </Link>
     </Grid>
   )
+}
+PollCard.prototype = {
+  title: PropTypes.string.isRequired,
+  _id: PropTypes.string.isRequired,
+  createdBy: {
+    firstname: PropTypes.string,
+    lastname: PropTypes.string,
+    profilePicture: PropTypes.string,
+  }
 }
 export default PollCard;

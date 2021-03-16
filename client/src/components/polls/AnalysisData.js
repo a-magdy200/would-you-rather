@@ -1,5 +1,6 @@
 import {Badge, Box, Chip, Divider, Typography} from "@material-ui/core";
 import React from "react";
+import PropTypes from 'prop-types';
 import {makeStyles} from "@material-ui/styles";
 const styles = makeStyles({
 
@@ -8,9 +9,11 @@ const styles = makeStyles({
   },
 })
 const AnalysisData = ({data}) => {
-  const {totalAnswersCount,
+  const {
+    totalAnswersCount,
     option1Count,
-    option2Count} = data;
+    option2Count
+  } = data;
   const classes = styles();
   return (
     <Box>
@@ -26,5 +29,12 @@ const AnalysisData = ({data}) => {
       </Typography>
     </Box>
   )
+}
+AnalysisData.prototype = {
+  data: {
+    totalAnswersCount: PropTypes.number,
+    option1Count: PropTypes.number,
+    option2Count: PropTypes.number,
+  }
 }
 export default AnalysisData;
