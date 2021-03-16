@@ -1,6 +1,5 @@
 # Would you rather? A voting web app
 
-[Live Demo](https://master.d18emgd5rhbc04.amplifyapp.com/)
 
 **Description**
 
