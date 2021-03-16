@@ -22,6 +22,7 @@ Development mode, you can run:
 
 Production mode, you can run:
 
+*Run this command using bash not windows command line*
 ### `yarn build` the script will build the react app, and start the express server automatically 
 
 Builds the app for production to the `build` folder.
