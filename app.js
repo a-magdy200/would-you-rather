@@ -20,8 +20,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client', 'build')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/polls', pollsRouter);
 
+app.use('/api/users', usersRouter);
+app.use('/api/polls', pollsRouter);
+app.use('/', indexRouter);
 module.exports = app;

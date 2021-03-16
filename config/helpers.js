@@ -11,9 +11,12 @@ const hashPassword = async password => await bcrypt.hash(password, saltRounds);
 const comparePassword = async (password, hashedPassword) => await bcrypt.compare(password, hashedPassword);
 const verifyAndGetID = async (header) => {
   let token = header.split(' ')[1];
-  let {data} = await decodeJWT(token);
-  let {_id} = data;
-  return _id;
+  if (token) {
+    let {data} = await decodeJWT(token);
+    let {_id} = data;
+    return _id;
+  }
+  return null;
 };
 const getFileExtension = fileName => {
   let fileParts = fileName.split('.');

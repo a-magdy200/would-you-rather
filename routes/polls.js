@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     let polls = await Poll.find().sort({createdAt: -1}).populate('createdBy', '-password');
     res.json(polls);
   } catch ({message}) {
-    res.json({error: message});
+    throw new Error(message);
   }
 });
 
@@ -24,19 +24,27 @@ router.get('/my-polls', async (req, res) => {
     let polls = await Poll.find({createdBy: mongoose.Types.ObjectId(_id)}).sort({createdAt: -1});
     res.json(polls);
   } catch ({message}) {
-    res.json({error: message});
+    throw new Error(message);
   }
 });
 router.get('/:pollId', async (req, res) => {
   try {
     let {pollId} = req.params;
-    let _id = await verifyAndGetID(req.header('Authorization')).catch(console.log);
+    let _id = await verifyAndGetID(req.header('Authorization'));
     let answerDetails = {};
+    let isValidId = mongoose.Types.ObjectId.isValid(pollId);
+    if (!isValidId) {
+      throw new Error('Not a valid ID');
+    }
     if (_id) {
       answerDetails = await UserPollAnswer.findOne({userId: _id, pollId}).select('answer');
     }
     let pollDetails = await Poll.findById(pollId).populate('createdBy', '-password');
-    res.json({pollDetails, answerDetails});
+    if (pollDetails) {
+      res.json({pollDetails, answerDetails});
+    } else {
+      throw new Error('Poll not found.');
+    }
   } catch ({message}) {
     res.json({error: message});
   }
@@ -60,7 +68,7 @@ router.post('/', async (req, res) => {
     await user.save();
     res.json({...poll._doc});
   } catch ({message}) {
-    res.json({error: message});
+    throw new Error(message);
   }
 });
 router.post('/answer', async (req, res) => {
@@ -88,7 +96,7 @@ router.post('/answer', async (req, res) => {
     await poll.save();
     res.json({...pollAnswer._doc});
   } catch ({message}) {
-    res.json({error: message});
+    throw new Error(message);
   }
 });
 module.exports = router;

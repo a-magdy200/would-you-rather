@@ -40,6 +40,7 @@ function App() {
             <Route path={'/polls/add'} component={CreatePollPage}/>
             <Route path={'/polls/:pollId'} component={PollDetailsPage}/>
             <Route path={'/leaderboard'} component={LeaderboardPage}/>
+            <Route path={'/404'} component={Error404Page}/>
             <Route component={Error404Page}/>
           </Switch>
         </Container>
