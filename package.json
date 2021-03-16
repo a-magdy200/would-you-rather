@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": "cd ./client && yarn install && yarn build && cd ..",
-    "start": "node bin/www",
-    "watch": "nodemon bin/www",
+    "start": "node index.js",
+    "watch": "nodemon index.js",
     "serve": "cd client && yarn start"
   },
   "dependencies": {
