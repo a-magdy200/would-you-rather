@@ -8,6 +8,7 @@ import AnalysisData from "./AnalysisData";
 import PollButtons from "./PollButtons";
 import YouMustLogin from "../common/YouMustLogin";
 import AnswerDetails from "./AnswerDetails";
+import PropTypes from 'prop-types';
 const styles = makeStyles({
   cardHeader: {
     borderBottom: `2px solid ${MAIN_COLOR}`,
@@ -67,5 +68,21 @@ const PollDetailsCard = ({pollDetails, answerDetails, isLoggedIn, onOptionClick}
         </Card>
     </Grid>
   )
+}
+PollDetailsCard.prototype = {
+  pollDetails: {
+    title: PropTypes.string.isRequired,
+    option1: PropTypes.string.isRequired,
+    option2: PropTypes.string.isRequired,
+    totalAnswersCount: PropTypes.number.isRequired,
+    option1Count: PropTypes.number.isRequired,
+    option2Count: PropTypes.number.isRequired
+  },
+  answerDetails: {
+    answer: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired
+  },
+  isLoggedIn: PropTypes.bool.isRequired,
+  onOptionClick: PropTypes.func.isRequired
 }
 export default PollDetailsCard;

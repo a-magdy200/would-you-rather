@@ -14,6 +14,7 @@ import {
 import {makeStyles} from "@material-ui/styles";
 import {MAIN_COLOR} from "../../config/theme";
 import Validator from "validator";
+import PropTypes from 'prop-types';
 const styles = makeStyles({
   cardHeader: {
     borderBottom: `2px solid ${MAIN_COLOR}`,
@@ -166,5 +167,25 @@ const UpdateProfileCard = ({
         </Card>
     </Grid>
   )
+}
+UpdateProfileCard.prototype = {
+  onInfoSave: PropTypes.func.isRequired,
+  onPasswordSave: PropTypes.func.isRequired,
+  onImageUpload: PropTypes.func.isRequired,
+  imagePreview: PropTypes.string.isRequired,
+  info: {
+    firstname: PropTypes.string.isRequired,
+    lastname: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired
+  },
+  password: {
+    newPassword: PropTypes.string.isRequired,
+    confirmPassword: PropTypes.string.isRequired
+  },
+  onInfoInputUpdate: PropTypes.func.isRequired,
+  onPasswordInputUpdate: PropTypes.func.isRequired,
+  savingImage: PropTypes.bool.isRequired,
+  savingInfo: PropTypes.bool.isRequired,
+  savingPassword: PropTypes.bool.isRequired
 }
 export default UpdateProfileCard;
