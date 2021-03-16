@@ -5,7 +5,7 @@ const logger = require('morgan');
 const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config();
-const indexRouter = require('./routes/index');
+const indexRouter = require('./routes');
 const usersRouter = require('./routes/users');
 const pollsRouter = require('./routes/polls');
 const fileUpload = require('express-fileupload');
@@ -18,7 +18,7 @@ app.use(cors());
 app.use(fileUpload());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
