@@ -1,6 +1,7 @@
 import {
   ANSWER_POLL_RESPONSE,
   CLEAR_POLL_DATA,
+  GET_POLL_ERROR,
   CLEAR_POLL_INPUTS, CREATE_POLL_RESPONSE, FILTER_POLLS,
   GET_ALL_POLLS_RESPONSE, GET_LEADERBOARD_RESPONSE, GET_MY_POLLS_RESPONSE,
   GET_POLL_RESPONSE,
@@ -19,7 +20,8 @@ const INITIAL_STATE = {
   filteredPolls: [],
   myPolls: [],
   filterBy: "unanswered",
-  leaderboard: []
+  leaderboard: [],
+  pollError: ''
 }
 
 export default function pollsReducer(state = INITIAL_STATE, action) {
@@ -35,6 +37,11 @@ export default function pollsReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         leaderboard: [...payload.leaderboard]
+      };
+    case GET_POLL_ERROR:
+      return {
+        ...state,
+        pollError: error
       };
     case CREATE_POLL_RESPONSE:
       return {

@@ -9,13 +9,13 @@ import PollCard from "../../components/polls/PollCard";
 import Filter from "../../components/polls/Filter";
 import Loader from "../../components/common/Loader";
 import {withSnackbar} from "notistack";
-import {useParams} from "react-router";
+import {useParams, Redirect} from "react-router";
 import UserCard from "../../components/polls/UserCard";
 import PollDetailsCard from "../../components/polls/PollDetailsCard";
 
 const PollDetailsPage = ({enqueueSnackbar}) => {
   const dispatch = useDispatch();
-  const {pollData} = useSelector(state => state.polls);
+  const {pollData, pollError} = useSelector(state => state.polls);
   const {isLoading} = useSelector(state => state.loading);
   const {pollId} = useParams();
   const {pollDetails, answerDetails} = pollData;
@@ -34,6 +34,14 @@ const PollDetailsPage = ({enqueueSnackbar}) => {
     return (
       <Loader/>
     )
+  }
+  if (pollError !== '') {
+    return <Redirect to={{
+      pathname: '/404',
+      state: {
+        snackbars: [{text: pollError, variant: 'error'}]
+      }
+    }} />
   }
   return (
     <Box p={5}>

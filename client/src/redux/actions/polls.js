@@ -10,7 +10,7 @@ import {
   UPDATE_POLL_INPUT,
   CLEAR_POLL_INPUTS,
   GET_MY_POLLS_RESPONSE,
-  GET_MY_POLLS_REQUEST, GET_LEADERBOARD_REQUEST, GET_LEADERBOARD_RESPONSE,
+  GET_MY_POLLS_REQUEST, GET_LEADERBOARD_REQUEST, GET_LEADERBOARD_RESPONSE, GET_POLL_ERROR,
 } from '../types';
 
 
@@ -32,6 +32,10 @@ const getPollRequest = (pollId) => ({
 const getPollResponse = (pollData) => ({
   type: GET_POLL_RESPONSE,
   payload: {pollData}
+})
+const getPollError = (error) => ({
+  type: GET_POLL_ERROR,
+  error
 })
 const getAllPollsRequest = () => ({
   type: GET_ALL_POLLS_REQUEST
@@ -67,6 +71,7 @@ const clearPollInputs = () => ({
 });
 export {
   updatePollInput,
+  getPollError,
   clearPollInputs,
   createPollRequest,
   createPollResponse,

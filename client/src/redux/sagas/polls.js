@@ -4,7 +4,8 @@ import {
   getAllPollsResponse, getLeaderboardResponse,
   getMyPollsResponse, getPollRequest,
   getPollResponse,
-  setLoading
+  setLoading,
+  getPollError
 } from "../actions";
 import {call, put, select, takeLatest} from 'redux-saga/effects';
 import {
@@ -79,10 +80,15 @@ function* getLeaderboard() {
 }
 function* getPollDetails(action) {
   yield put(setLoading(true));
+  yield put(getPollError(''));
   try {
     const token = yield select(getToken);
     const response = yield call(API,`polls/${action.payload.pollId}`, 'get', {}, formatAuthorizationHeaders(token));
-    yield put(getPollResponse(response.data));
+    if (response.data.error) {
+      yield put(getPollError(response.data.error));
+    } else {
+      yield put(getPollResponse(response.data));
+    }
     yield put(setLoading(false));
   } catch (e) {
     console.error(e);
