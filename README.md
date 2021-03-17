@@ -18,7 +18,7 @@ Clone the repo then run
 ### `yarn start` or `yarn watch` to run the express server locally
 
 For the frontend you can either run:
-
+**You have to rebuild/start the react app to avoid running an old built version**
 1)
 ### `yarn build` to install the dependencies for react app, then build it in production mode
 
