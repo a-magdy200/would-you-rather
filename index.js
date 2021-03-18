@@ -9,6 +9,7 @@ const indexRouter = require('./routes');
 const usersRouter = require('./routes/users');
 const pollsRouter = require('./routes/polls');
 const fileUpload = require('express-fileupload');
+const mongoose = require('./config/database');
 
 const app = express();
 

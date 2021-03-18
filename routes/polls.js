@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const {verifyAndGetID} = require("../config/helpers");
 router.get('/', async (req, res) => {
   try {
-    let polls = await Poll.find().sort({createdAt: -1}).populate('createdBy', '-password');
+    let polls = await Poll.find();//.sort({createdAt: -1}).populate('createdBy', '-password');
     res.json(polls);
   } catch ({message}) {
     throw new Error(message);
