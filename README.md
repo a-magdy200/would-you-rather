@@ -10,6 +10,10 @@ The project uses express server, aws s3 storage, mongoDB cloud database
 *This project has been done for in Udacity's Web development advanced Nanodegree program - EgFWD scholarship*
 
 # Installation:
+- Install Packages
+- Add The Environment Variables **Described at the end**
+- Run Server
+- Build The Front-end
 
 Clone the repo then run
 
