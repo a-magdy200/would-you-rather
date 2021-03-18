@@ -24,4 +24,7 @@ app.use(express.static(path.join(__dirname, 'client', 'build')));
 app.use('/api/users', usersRouter);
 app.use('/api/polls', pollsRouter);
 app.use('/', indexRouter);
-module.exports = app;
+
+app.listen(process.env.PORT || process.env.SERVER_PORT || 3000, () => {
+    console.log(`Would you rather app running...`);
+});
