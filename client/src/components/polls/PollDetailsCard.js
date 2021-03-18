@@ -9,6 +9,8 @@ import PollButtons from "./PollButtons";
 import YouMustLogin from "../common/YouMustLogin";
 import AnswerDetails from "./AnswerDetails";
 import PropTypes from 'prop-types';
+import _ from 'lodash';
+
 const styles = makeStyles({
   cardHeader: {
     borderBottom: `2px solid ${MAIN_COLOR}`,
@@ -53,7 +55,7 @@ const PollDetailsCard = ({pollDetails, answerDetails, isLoggedIn, onOptionClick}
             </Typography>
             <Divider className={classes.buttonContainer} />
             {
-              answerDetails ?
+              !_.isEmpty(answerDetails) ?
                 <AnswerDetails answerDetails={answerDetails} />
                 : isLoggedIn ?
                   <PollButtons options={[option1, option2]} onOptionClick={onOptionClick} />

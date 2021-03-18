@@ -4,7 +4,7 @@ import UserCard from "../../components/polls/UserCard";
 import {useDispatch, useSelector} from "react-redux";
 import UpdateProfileCard from "../../components/user/UpdateProfileCard";
 import {withSnackbar} from "notistack";
-import {changePasswordRequest, saveInfoRequest, uploadImageRequest} from "../../redux/actions/user";
+import {changePasswordRequest, saveInfoRequest, uploadImageRequest} from "../../redux/actions";
 const MyProfilePage = ({enqueueSnackbar}) => {
   const {
     profile,

@@ -1,12 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {
-  Box, Card, CardMedia,
+  Box,
   Grid,
 } from "@material-ui/core";
-import {answerPollRequest, getAllPollsRequest, getPollRequest} from "../../redux/actions";
+import {answerPollRequest, getPollRequest} from "../../redux/actions";
 import {useDispatch, useSelector} from "react-redux";
-import PollCard from "../../components/polls/PollCard";
-import Filter from "../../components/polls/Filter";
 import Loader from "../../components/common/Loader";
 import {withSnackbar} from "notistack";
 import {useParams, Redirect} from "react-router";

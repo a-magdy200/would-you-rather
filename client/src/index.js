@@ -7,8 +7,9 @@ import {Provider} from "react-redux";
 import {ThemeProvider} from "@material-ui/styles";
 import theme from "./config/theme";
 import {SnackbarProvider} from "notistack";
-import {store, persistor} from "./redux/store";
-import { PersistGate } from 'redux-persist/integration/react'
+import store, {history, persistor} from "./redux/store";
+import { PersistGate } from 'redux-persist/integration/react';
+import {ConnectedRouter} from 'connected-react-router';
 import Loader from "./components/common/Loader";
 ReactDOM.render(
   // Remove Strict mode to use notifications
@@ -17,13 +18,15 @@ ReactDOM.render(
   // </React.StrictMode>
 
   <Provider store={store}>
-    <PersistGate persistor={persistor} loading={<Loader/>}>
-      <ThemeProvider theme={theme}>
-        <SnackbarProvider maxSnack={3} autoHideDuration={3000} disableWindowBlurListener={true}>
-          <App />
-        </SnackbarProvider>
-      </ThemeProvider>
-    </PersistGate>
+    <ConnectedRouter history={history}>
+      <PersistGate persistor={persistor} loading={<Loader/>}>
+        <ThemeProvider theme={theme}>
+          <SnackbarProvider maxSnack={3} autoHideDuration={3000} disableWindowBlurListener={true}>
+            <App />
+          </SnackbarProvider>
+        </ThemeProvider>
+      </PersistGate>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );

@@ -4,11 +4,11 @@ import {Route, Redirect} from "react-router-dom";
 import PropTypes from 'prop-types';
 const GuestRoute = ({path, component: Component, ...rest}) => {
   let {isLoggedIn} = useSelector(state => state.user);
-    return <Route path={path} {...rest} render={() => {
-      return !isLoggedIn ?
-        <Component /> :
-        <Redirect to={'/'} />
-    }} />
+  return <Route path={path} {...rest} render={() => {
+    return !isLoggedIn ?
+      <Component /> :
+      <Redirect to={'/'} />
+  }} />
 }
 GuestRoute.prototype = {
   path: PropTypes.string.isRequired,

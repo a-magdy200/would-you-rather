@@ -1,7 +1,7 @@
 import React from "react";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {BrowserRouter, Switch, Route, useHistory} from "react-router-dom";
 import Header from "./components/common/Header";
-import {Container} from "@material-ui/core";
+import {Box, Container} from "@material-ui/core";
 import Error404Page from "./pages/Error404Page";
 import UserProfilePage from "./pages/account/UserProfilePage";
 import PollDetailsPage from "./pages/polls/PollDetailsPage";
@@ -19,10 +19,14 @@ import VerifyEmailPage from "./pages/auth/VerifyEmailPage";
 import VerifyCodePage from "./pages/auth/VerifyCodePage";
 import GuestRoute from "./components/common/GuestRoute";
 import HomePage from "./pages/polls/HomePage";
+import RequireLoginPage from "./pages/RequireLoginPage";
+import { ConnectedRouter } from 'connected-react-router'
+import {history} from "./redux/store";
 
 function App() {
+
   return (
-      <BrowserRouter>
+      <Box>
         <Header />
         <Container>
           <Switch>
@@ -30,21 +34,22 @@ function App() {
             <PrivateRoute path={'/profile'} component={MyProfilePage}/>
             <PrivateRoute path={'/settings'} component={AccountSettingsPage}/>
             <PrivateRoute path={'/my-polls'} component={MyPollsPage}/>
+            <PrivateRoute path={'/leaderboard'} component={LeaderboardPage}/>
             <GuestRoute path={'/sign-in'} component={SignInPage}/>
             <GuestRoute path={'/sign-up'} component={SignUpPage}/>
             <GuestRoute path={'/forget-password'} component={ForgetPasswordPage}/>
             <GuestRoute path={'/reset-password'} component={ResetPasswordPage}/>
             <GuestRoute path={'/verify-email'} component={VerifyEmailPage}/>
             <GuestRoute path={'/verify-code'} component={VerifyCodePage}/>
+            <GuestRoute path={'/require-login'} component={RequireLoginPage}/>
             <Route path={'/user/:userId'} component={UserProfilePage}/>
             <Route path={'/polls/add'} component={CreatePollPage}/>
             <Route path={'/polls/:pollId'} component={PollDetailsPage}/>
-            <PrivateRoute path={'/leaderboard'} component={LeaderboardPage}/>
             <Route path={'/404'} component={Error404Page}/>
             <Route component={Error404Page}/>
           </Switch>
         </Container>
-      </BrowserRouter>
+      </Box>
     );
 }
 
