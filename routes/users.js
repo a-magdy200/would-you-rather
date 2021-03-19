@@ -114,10 +114,16 @@ router.post('/sign-in', async function(req, res) {
   try {
     let user = await User.findOne({email});
     if (user) {
-      let {firstname, lastname, profilePicture, _id} = user;
+      let {_id} = user;
       if (await comparePassword(password, user.password)) {
         let token = generateJWT({_id});
-        res.json({firstname, lastname, profilePicture, token});
+        res.json({
+          profile: {
+            ...user._doc,
+            password: undefined
+          },
+          token,
+        });
       } else {
         throw new Error('Invalid email/password');
       }

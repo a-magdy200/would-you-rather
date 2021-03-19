@@ -12,6 +12,7 @@ import {routerMiddleware} from 'connected-react-router'
 const persistConfig = {
   key: 'root',
   storage,
+  whitelist: ['user']
 }
 const history = createBrowserHistory();
 const logger = createLogger();

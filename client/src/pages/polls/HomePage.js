@@ -17,9 +17,12 @@ const HomePage = ({enqueueSnackbar}) => {
   const dispatch = useDispatch();
   const {filteredPolls, polls} = useSelector(state => state.polls);
   const {isLoading} = useSelector(state => state.loading);
+  const {to} = useSelector(state => state.app);
   useEffect(() => {
-    enqueueSnackbar('Fetching polls...', {variant: 'info'});
-    dispatch(getAllPollsRequest());
+    if (to === '/') {
+      enqueueSnackbar('Fetching polls...', {variant: 'info'});
+      dispatch(getAllPollsRequest());
+    }
   }, []);
   if (isLoading) {
     return (

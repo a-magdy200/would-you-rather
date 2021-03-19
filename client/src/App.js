@@ -35,6 +35,8 @@ function App() {
             <PrivateRoute path={'/settings'} component={AccountSettingsPage}/>
             <PrivateRoute path={'/my-polls'} component={MyPollsPage}/>
             <PrivateRoute path={'/leaderboard'} component={LeaderboardPage}/>
+            <PrivateRoute path={'/user/:userId'} component={UserProfilePage}/>
+            <PrivateRoute path={'/polls/add'} component={CreatePollPage}/>
             <GuestRoute path={'/sign-in'} component={SignInPage}/>
             <GuestRoute path={'/sign-up'} component={SignUpPage}/>
             <GuestRoute path={'/forget-password'} component={ForgetPasswordPage}/>
@@ -42,8 +44,6 @@ function App() {
             <GuestRoute path={'/verify-email'} component={VerifyEmailPage}/>
             <GuestRoute path={'/verify-code'} component={VerifyCodePage}/>
             <GuestRoute path={'/require-login'} component={RequireLoginPage}/>
-            <Route path={'/user/:userId'} component={UserProfilePage}/>
-            <Route path={'/polls/add'} component={CreatePollPage}/>
             <Route path={'/polls/:pollId'} component={PollDetailsPage}/>
             <Route path={'/404'} component={Error404Page}/>
             <Route component={Error404Page}/>

@@ -22,10 +22,10 @@ const AnalysisData = ({data}) => {
         Total Votes: <strong>{totalAnswersCount}</strong>
       </Typography>
       <Typography gutterBottom={true}>
-        Option 1 Votes: <Chip color={'primary'} size={'medium'} label={`${(option1Count / totalAnswersCount) * 100}% (${option1Count})` } />
+        Option 1 Votes: <Chip color={'primary'} size={'medium'} label={`${totalAnswersCount === 0 ? 0 : (option1Count / totalAnswersCount) * 100}% (${option1Count})` } />
       </Typography>
       <Typography gutterBottom={true}>
-        Option 2 Votes: <Chip color={'primary'} size={'medium'} label={`${(option2Count / totalAnswersCount) * 100}% (${option2Count})` } />
+        Option 2 Votes: <Chip color={'primary'} size={'medium'} label={`${totalAnswersCount === 0 ? 0 : (option2Count / totalAnswersCount) * 100}% (${option2Count})` } />
       </Typography>
     </Box>
   )

@@ -3,13 +3,14 @@ import {
   Box,
   Grid,
 } from "@material-ui/core";
-import {answerPollRequest, getPollRequest} from "../../redux/actions";
+import {answerPollRequest, getPollRequest, setRedirect} from "../../redux/actions";
 import {useDispatch, useSelector} from "react-redux";
 import Loader from "../../components/common/Loader";
 import {withSnackbar} from "notistack";
 import {useParams, Redirect} from "react-router";
 import UserCard from "../../components/polls/UserCard";
 import PollDetailsCard from "../../components/polls/PollDetailsCard";
+import RequireLoginPage from "../RequireLoginPage";
 
 const PollDetailsPage = ({enqueueSnackbar}) => {
   const dispatch = useDispatch();
@@ -20,8 +21,10 @@ const PollDetailsPage = ({enqueueSnackbar}) => {
   const {isLoggedIn} = useSelector(state => state.user);
   const user = pollDetails?.createdBy;
   useEffect(() => {
-    enqueueSnackbar('Fetching poll details...', {variant: 'info'});
-    dispatch(getPollRequest(pollId));
+    if (isLoggedIn) {
+      enqueueSnackbar('Fetching poll details...', {variant: 'info'});
+      dispatch(getPollRequest(pollId));
+    }
   }, []);
 
   const onOptionClick = option => {
@@ -40,6 +43,12 @@ const PollDetailsPage = ({enqueueSnackbar}) => {
         snackbars: [{text: pollError, variant: 'error'}]
       }
     }} />
+  }
+  if (!isLoggedIn) {
+    dispatch(setRedirect(`/polls/${pollId}`))
+    return (
+      <RequireLoginPage />
+    )
   }
   return (
     <Box p={5}>

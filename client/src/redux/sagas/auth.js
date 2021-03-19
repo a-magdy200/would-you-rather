@@ -34,6 +34,7 @@ function* signUp({payload}) {
       yield put(signInResponse(response.data));
       const {to} = yield select(state => state.app);
       if (to !== '/') {
+        yield put(push(to));
         yield put(clearRedirect());
       }
     }
