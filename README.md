@@ -10,6 +10,10 @@ The project uses express server, aws s3 storage, mongoDB cloud database
 *This project has been done for in Udacity's Web development advanced Nanodegree program - EgFWD scholarship*
 
 # Installation:
+- Install Packages
+- Add The Environment Variables **Described at the end**
+- Run Server
+- Build The Front-end
 
 Clone the repo then run
 
@@ -19,6 +23,7 @@ Clone the repo then run
 
 For the frontend you can either run:
 **You have to rebuild/start the react app to avoid running an old built version**
+
 1)
 ### `yarn build` to install the dependencies for react app, then build it in production mode
 

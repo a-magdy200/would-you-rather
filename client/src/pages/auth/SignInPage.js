@@ -7,7 +7,7 @@ import {setSignInError, setSignUpError,  signInRequest} from "../../redux/action
 import {Alert} from "@material-ui/lab";
 const SignInPage = ({enqueueSnackbar}) => {
   const dispatch = useDispatch();
-  const {loginError} = useSelector(state => state.auth);
+  const {signInError} = useSelector(state => state.auth);
   const {isLoading} = useSelector(state => state.loading);
   const [form, setForm] = useState({email: '', password: ''});
   useEffect(() => {
@@ -30,7 +30,7 @@ const SignInPage = ({enqueueSnackbar}) => {
         <Card>
           <CardContent>
             <Typography color={'primary'} component={'h3'} gutterBottom={true} align={'center'} variant={'h3'}>Sign In</Typography>
-            {loginError && <Alert color={'error'} severity={'error'}>Invalid Credentials</Alert>}
+            {signInError && <Alert color={'error'} severity={'error'}>{signInError}</Alert>}
             <TextField
               label={'Email'}
               variant={'outlined'}
