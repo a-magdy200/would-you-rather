@@ -1,9 +1,10 @@
 # Would you rather? A voting web app
 
-
 **Description**
 
 A simple react application to create polls, or answer polls created by other users.
+
+[View Demo](https://agile-peak-81814.herokuapp.com/)
 
 The project uses express server, aws s3 storage, mongoDB cloud database
 

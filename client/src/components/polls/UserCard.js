@@ -6,7 +6,6 @@ import {MAIN_COLOR} from "../../config/theme";
 import PropTypes from 'prop-types';
 const styles = makeStyles({
   userCardContainerStyle: {
-    // marginRight: 20
   },
   userImageContainerStyle: {
     height: 300,
